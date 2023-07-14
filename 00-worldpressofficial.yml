@@ -6,17 +6,17 @@ services:
     image: wordpress
     restart: always
     ports:
-      - 8000:80
+      - 80:80
     environment:
-      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_HOST: db_00
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - wordpress:/var/www/html
+      - wordpress_00:/var/www/html
 
   db_00:
-    image: mysql:5.7
+    image: mysql
     restart: always
     environment:
       MYSQL_DATABASE: exampledb
@@ -24,8 +24,8 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql
+      - db_00:/var/lib/mysql
 
 volumes:
-  wordpress:
-  db:
+  wordpress_00:
+  db_00:
